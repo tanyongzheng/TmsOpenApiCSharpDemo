@@ -1,0 +1,139 @@
+﻿<Window x:Class="TmsOpenApiCSharpDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:TmsOpenApiCSharpDemo"
+        mc:Ignorable="d"
+        Title="TMS系统API接口测试工具" MaxHeight="600" MaxWidth="1000" ResizeMode="CanMinimize">
+    <xctk:BusyIndicator IsBusy="{Binding IsBusy}" >
+        <Grid>
+        <!--网格列-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!--网格行-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"></StackPanel>
+        <StackPanel Grid.Row="1">
+            <Grid>
+                <!--网格列-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"></ColumnDefinition>
+                    <ColumnDefinition Width="600"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <GroupBox VerticalAlignment="Top">
+                        <GroupBox.Header>Api参数设置</GroupBox.Header>
+                        <StackPanel Orientation="Vertical" Margin="5">
+                            <StackPanel Orientation="Horizontal" Margin="2">
+                                <TextBlock Text="Api地址 :" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                                <TextBox Width="300" Height="26" Text="{Binding ApiBaseUrl}"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="2">
+                                <TextBlock Text="用户 Id :" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                                <TextBox Width="300" Height="26"  Text="{Binding UserId}"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="2">
+                                <TextBlock Text="ApiKey :" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                                <TextBox Width="300" Height="26" Text="{Binding ApiKey}"></TextBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox VerticalAlignment="Top">
+                        <GroupBox.Header>接口配置</GroupBox.Header>
+                        <StackPanel Orientation="Vertical" Margin="5">
+                            <StackPanel Orientation="Horizontal" Margin="2">
+                                <TextBlock Text="接口 :" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                                <ComboBox MinWidth="180" VerticalAlignment="Center" Margin="5,0" ItemsSource="{Binding ApiMethodTypeList}"
+                                          Height="26" SelectedItem="{Binding CurrentApiMethodType}" DisplayMemberPath="Name" >
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <Button MinWidth="120" Height="26" Content="生成模拟数据" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0" 
+                        Command="{Binding GenerateJsonCommand}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <Button MinWidth="120" Height="26" Content="清空请求数据" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0" 
+                        Command="{Binding ClearRequestDataCommand}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <Button MinWidth="120" Height="26" Content="清空响应数据" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0" 
+                        Command="{Binding ClearReceivedDataCommand}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox VerticalAlignment="Top">
+                        <GroupBox.Header>请求头参数</GroupBox.Header>
+                        <StackPanel Orientation="Vertical" Margin="5">
+                            <StackPanel Orientation="Horizontal" Margin="2">
+                                <TextBlock Text="请求方式 :" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                                <TextBox Width="100" Height="26"  Text="{Binding CurrentApiMethodType.RequestMethod}"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="2">
+                                <TextBlock Text="请求头 :" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="2">
+                                <TextBox Height="150" Width="360" TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Visible"
+                                         Background="LightYellow"
+                                         AcceptsReturn="True" VerticalContentAlignment="Top"
+                                         Margin="5"  Text="{Binding RequestHeardData}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <GroupBox VerticalAlignment="Top">
+                        <GroupBox.Header>响应数据区</GroupBox.Header>
+                        <StackPanel Orientation="Vertical" Margin="0">
+                            <StackPanel Orientation="Horizontal" >
+                                <Label>响应状态码：</Label>
+                                <Label Content="{Binding ResponseStatusCode}"></Label>
+                            </StackPanel>
+                            <TextBox Height="230" Width="570" TextWrapping="Wrap"
+                                     VerticalScrollBarVisibility="Visible"
+                                     IsEnabled="True"
+                                     Background="LightYellow"
+                                     Foreground="Red"
+                                     AcceptsReturn="True" VerticalContentAlignment="Top"
+                                     Margin="5"  Text="{Binding ResponseData}"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <StackPanel Orientation="Horizontal" Margin="2">
+                        <TextBlock Text="Api完整地址 :" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <TextBox Width="480"  Height="26" Text="{Binding ApiFullUrl ,Mode=OneWay}"></TextBox>
+                    </StackPanel>
+                    <GroupBox VerticalAlignment="Top">
+                        <GroupBox.Header>请求数据区</GroupBox.Header>
+                        <StackPanel Orientation="Vertical" Margin="0">
+                            <StackPanel Orientation="Horizontal" Margin="0">
+                                <TextBox Height="150" Width="570" TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Visible"
+                                         AcceptsReturn="True" VerticalContentAlignment="Top"
+                                         Margin="5"  Text="{Binding RequestData}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  Margin="0"  HorizontalAlignment="Right">
+                                <Button MinWidth="80" Content="发送" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                        Margin="0 0 20 0" Height="30"  Command="{Binding SendDataCommand, Mode=TwoWay}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <StatusBar Grid.Row="2" >
+            <StatusBarItem FontFamily="Arial" FontSize="12" Foreground="White"/>
+        </StatusBar>
+        <StatusBar Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,10,0" Background="Transparent">
+            <StatusBarItem Content="author : tyz" FontFamily="Arial" FontSize="12" Foreground="Gray" />
+        </StatusBar>
+    </Grid>
+    </xctk:BusyIndicator>
+</Window>
