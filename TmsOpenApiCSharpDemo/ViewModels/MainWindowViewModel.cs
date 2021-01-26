@@ -53,6 +53,7 @@ namespace TmsOpenApiCSharpDemo.ViewModels
             createOrderInput.ToAddress1 = "6859 Del Mar Terrace";
             createOrderInput.ToAddress2 = "";
             createOrderInput.Weight = 0.345M;
+            createOrderInput.OverseaWarehouseCode = "LAX";
             createOrderInput.OrderPackages=new List<CreateOrderPackageInput>();
 
             var orderpackage=new CreateOrderPackageInput();

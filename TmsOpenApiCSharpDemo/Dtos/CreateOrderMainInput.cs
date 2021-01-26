@@ -207,6 +207,11 @@ namespace TmsOpenApiCSharpDemo.Dtos
 
         public int? DutyPaymentType { get; set; }
 
+        /// <summary>
+        /// 海外仓代码
+        /// </summary>
+        public string OverseaWarehouseCode { get; set; }
+
         public List<CreateOrderPackageInput> OrderPackages { get; set; }
     }
 }
