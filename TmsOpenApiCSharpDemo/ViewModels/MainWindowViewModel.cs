@@ -54,6 +54,8 @@ namespace TmsOpenApiCSharpDemo.ViewModels
             createOrderInput.ToAddress2 = "";
             createOrderInput.Weight = 0.345M;
             createOrderInput.OverseaWarehouseCode = "LAX";
+            createOrderInput.ToDocumentType = "CNPJ";
+            createOrderInput.ToDocumentNumber = "12345678";
             createOrderInput.OrderPackages=new List<CreateOrderPackageInput>();
 
             var orderpackage=new CreateOrderPackageInput();

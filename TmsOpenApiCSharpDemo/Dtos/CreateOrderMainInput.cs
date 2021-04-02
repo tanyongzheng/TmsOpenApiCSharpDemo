@@ -164,6 +164,19 @@ namespace TmsOpenApiCSharpDemo.Dtos
         /// 收件仓库编码
         /// </summary>
         public string ToWarehouseCode { get; set; }
+        
+        /// <summary>
+        ///收件人文件，证件类型
+        /// 譬如护照，公司营业执照，税号等
+        /// 巴西固定为：CPF/CNPJ/PSAAPORT
+        /// </summary>
+        public string ToDocumentType { get; set; }
+
+        /// <summary>
+        ///收件人文件，证件号码
+        /// 譬如护照号，公司营业执照号码，税号等
+        /// </summary>
+        public string ToDocumentNumber { get; set; }
         #endregion
 
         #region 服务选项设置
