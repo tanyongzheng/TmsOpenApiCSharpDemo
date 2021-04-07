@@ -58,6 +58,14 @@ namespace TmsOpenApiCSharpDemo.ViewModels
             createOrderInput.ToDocumentNumber = "12345678";
             createOrderInput.OrderPackages=new List<CreateOrderPackageInput>();
 
+            createOrderInput.FromCompany = "";
+            createOrderInput.FromName = "Tom";
+            createOrderInput.FromCountry = "CN";
+            createOrderInput.FromTelPhone = "13800138001";
+            createOrderInput.FromCity = "ShenZhen";
+            createOrderInput.FromProvince = "GuangDong";
+            createOrderInput.FromPostCode = "518000";
+
             var orderpackage=new CreateOrderPackageInput();
             orderpackage.Length = 2;
             orderpackage.Width = 3;
